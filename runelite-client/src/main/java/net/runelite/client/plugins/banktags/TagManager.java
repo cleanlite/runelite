@@ -37,14 +37,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemVariationMapping;
 import static net.runelite.client.plugins.banktags.BankTagsPlugin.CONFIG_GROUP;
-import net.runelite.client.plugins.cluescrolls.ClueScrollService;
-import net.runelite.client.plugins.cluescrolls.clues.ClueScroll;
-import net.runelite.client.plugins.cluescrolls.clues.CoordinateClue;
-import net.runelite.client.plugins.cluescrolls.clues.EmoteClue;
-import net.runelite.client.plugins.cluescrolls.clues.FairyRingClue;
-import net.runelite.client.plugins.cluescrolls.clues.HotColdClue;
-import net.runelite.client.plugins.cluescrolls.clues.MapClue;
-import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
 import net.runelite.client.util.Text;
 
 @Singleton
@@ -53,17 +45,17 @@ public class TagManager
 	private static final String ITEM_KEY_PREFIX = "item_";
 	private final ConfigManager configManager;
 	private final ItemManager itemManager;
-	private final ClueScrollService clueScrollService;
 
 	@Inject
 	private TagManager(
 		final ItemManager itemManager,
-		final ConfigManager configManager,
-		final ClueScrollService clueScrollService)
+		final ConfigManager configManager)
+
+
 	{
 		this.itemManager = itemManager;
 		this.configManager = configManager;
-		this.clueScrollService = clueScrollService;
+
 	}
 
 	String getTagString(int itemId, boolean variation)
@@ -123,10 +115,7 @@ public class TagManager
 
 	boolean findTag(int itemId, String search)
 	{
-		if (search.equals("clue") && testClue(itemId))
-		{
-			return true;
-		}
+
 
 		Collection<String> tags = getTags(itemId, false);
 		tags.addAll(getTags(itemId, true));
@@ -194,38 +183,4 @@ public class TagManager
 		return itemId;
 	}
 
-	private boolean testClue(int itemId)
-	{
-		ClueScroll c = clueScrollService.getClue();
-
-		if (c == null)
-		{
-			return false;
-		}
-
-		if (c instanceof EmoteClue)
-		{
-			EmoteClue emote = (EmoteClue) c;
-
-			for (ItemRequirement ir : emote.getItemRequirements())
-			{
-				if (ir.fulfilledBy(itemId))
-				{
-					return true;
-				}
-			}
-		}
-		else if (c instanceof CoordinateClue || c instanceof HotColdClue || c instanceof FairyRingClue)
-		{
-			return itemId == ItemID.SPADE;
-		}
-		else if (c instanceof MapClue)
-		{
-			MapClue mapClue = (MapClue) c;
-
-			return mapClue.getObjectId() == -1 && itemId == ItemID.SPADE;
-		}
-
-		return false;
-	}
 }

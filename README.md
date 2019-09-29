@@ -1,9 +1,9 @@
 ![](runelite-client/src/main/resources/net/runelite/client/ui/clfinal.png)
-# cleanlite [![Travis](https://img.shields.io/travis/runelite/runelite.svg)](https://travis-ci.org/runelite/runelite) [![Discord](https://img.shields.io/discord/301497432909414422.svg)](https://discord.gg/mePCs8U)
+# cleanlite [![Travis](https://img.shields.io/travis/runelite/runelite.svg)](https://travis-ci.org/runelite/runelite) [![Discord](https://img.shields.io/discord/301497432909414422.svg)](https://discord.gg/TAKctjn)
 
 CleanLite is a free, open source fork of Runelite, the most popular Oldschool Runescape client. The aim of CleanLite is to create a client that is as close to the vanilla client as possible, while maintaining important QOL and Performance features such as GPU rendering and increased draw distance.
 
-If you have any questions, please join our [Discord](https://discord.gg/WwsJsNs) server.
+If you have any questions, please join our [Discord](https://discord.gg/TAKctjn) server.
 
 ## Project Layout
 
